@@ -1,3 +1,5 @@
+"use client";
+
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -5,27 +7,67 @@ import { Label } from "../ui/label";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ErrorMessage from "../core/messages/ErrorMessage";
+// import { useImage } from "@/stores/image-store";
+import { useState } from "react";
+// import { addDataPicture } from "@/services/stream";
+
+const MAX_FILE_SIZE = 5000000;
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
 
 const schema = z.object({
   longitude: z.number().min(-180).max(180),
   latitude: z.number().min(-90).max(90),
-  pictureName: z.string().nonempty("File name is required"),
+  image: z
+    .any()
+    .refine(
+      (file) => file?.[0]?.size <= MAX_FILE_SIZE,
+      `Max image size is 5MB.`
+    )
+    .refine(
+      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.[0]?.type),
+      "Only .jpg & .jpeg & .png formats are supported."
+    ),
 });
 
 type FormData = z.infer<typeof schema>;
 
 export default function FormDialog() {
+  // const { setImage } = useImage();
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
+  const [file, setFile] = useState<File | null>(null);
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          localStorage.setItem("imageFile", reader.result as string);
+        };
+        // setImage(reader.result as string);
+        reader.readAsDataURL(file);
+      }
+
+      console.log(data);
+      // const formData = new FormData();
+
+      // formData.append("longitude", data.longitude.toString());
+      // formData.append("latitude", data.latitude.toString());
+      // if (data.image[0]) {
+      //   formData.append("image", data.image[0]);
+      // }
+
+      // const res = await addDataPicture(formData);
+
+      // console.log(res);
+    } catch (err) {
+      console.log("Error: ", err);
+    }
   };
 
   return (
@@ -67,21 +109,18 @@ export default function FormDialog() {
         </li>
         <li>
           <div className="grid w-full max-w-sm items-center gap-3">
-            <Label htmlFor="picture">Picture</Label>
+            <Label htmlFor="image">Gambar</Label>
             <Input
-              id="picture"
+              id="image"
               type="file"
+              {...register("image")}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                const file = e.target.files?.[0];
-                if (file) {
-                  setValue("pictureName", file.name);
-                } else {
-                  setValue("pictureName", "");
-                }
+                if (!e.target.files) return;
+                setFile(e.target.files?.[0]);
               }}
             />
-            {errors.pictureName && (
-              <ErrorMessage message={errors.pictureName.message} />
+            {errors.image && (
+              <ErrorMessage message={errors.image.message as string} />
             )}
           </div>
         </li>
