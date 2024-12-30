@@ -4,9 +4,18 @@ import { useUploadDialog } from "@/stores/upload-dialog-store";
 import { Button } from "@/components/ui/button";
 import { Upload } from "lucide-react";
 import UploadDialog from "@/components/UploadDialog";
+// import { useUploadButton } from "@/stores/upload-button-store";
+import { useEffect, useState } from "react";
 
 export default function UploadSection() {
+  // const { open } = useUploadButton();
   const setUploadDialogModal = useUploadDialog((s) => s.setOpen);
+  const [imageURL, setImageURL] = useState<string | null>(null);
+
+  useEffect(() => {
+    const imageURL = localStorage.getItem("imageFile");
+    setImageURL(imageURL);
+  }, [imageURL]);
 
   return (
     <section className="pt-20 grid mx-auto px-96 text-center space-y-5">
@@ -16,6 +25,7 @@ export default function UploadSection() {
         dan keselamatan berkendara.
       </p>
 
+      {/* {open && ( */}
       <Button
         onClick={() => setUploadDialogModal(true)}
         variant={"outline"}
@@ -24,6 +34,7 @@ export default function UploadSection() {
         <Upload />
         Upload Gambar ✨
       </Button>
+      {/* )} */}
 
       <UploadDialog />
     </section>

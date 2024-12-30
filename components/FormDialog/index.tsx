@@ -9,7 +9,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import ErrorMessage from "../core/messages/ErrorMessage";
 // import { useImage } from "@/stores/image-store";
 import { useState } from "react";
-// import { addDataPicture } from "@/services/stream";
+import { addDataPicture } from "@/services/stream";
+import { useUploadDialog } from "@/stores/upload-dialog-store";
+// import { useUploadButton } from "@/stores/upload-button-store";
+import { useImage } from "@/stores/image-store";
+import { useLoadingApi } from "@/stores/loading-api-store";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
@@ -32,7 +36,9 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export default function FormDialog() {
-  // const { setImage } = useImage();
+  const setUploadDialogModal = useUploadDialog((s) => s.setOpen);
+  // const setUploadButton = useUploadButton((s) => s.setOpen);
+  const setImage = useImage((s) => s.setImage);
   const {
     register,
     handleSubmit,
@@ -41,32 +47,36 @@ export default function FormDialog() {
     resolver: zodResolver(schema),
   });
   const [file, setFile] = useState<File | null>(null);
+  const { setLoading } = useLoadingApi();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
+      setLoading(true);
       if (file) {
         const reader = new FileReader();
         reader.onloadend = () => {
           localStorage.setItem("imageFile", reader.result as string);
+          setImage(true);
         };
         // setImage(reader.result as string);
         reader.readAsDataURL(file);
       }
 
-      console.log(data);
-      // const formData = new FormData();
+      const formData = new FormData();
 
       // formData.append("longitude", data.longitude.toString());
-      // formData.append("latitude", data.latitude.toString());
-      // if (data.image[0]) {
-      //   formData.append("image", data.image[0]);
-      // }
+      formData.append("description", data.latitude.toString());
+      if (data.image[0]) {
+        formData.append("image", data.image[0]);
+      }
 
-      // const res = await addDataPicture(formData);
+      const res = await addDataPicture(formData);
 
-      // console.log(res);
+      console.log(res);
     } catch (err) {
       console.log("Error: ", err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -125,7 +135,14 @@ export default function FormDialog() {
           </div>
         </li>
         <li className="flex w-full justify-end">
-          <Button variant={"outline"} type="submit">
+          <Button
+            variant={"outline"}
+            type="submit"
+            onClick={() => {
+              setUploadDialogModal(false);
+              // setUploadButton(false);
+            }}
+          >
             Submit
           </Button>
         </li>
