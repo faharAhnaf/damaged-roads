@@ -21,7 +21,7 @@ export default function NavbarSection() {
   return (
     <section
       className={`fixed w-full h-16 flex items-center px-44 ${
-        isScrolled && "backdrop-blur-sm bg-white duration-700"
+        isScrolled && "backdrop-blur-sm bg-white/80 duration-300"
       }`}
     >
       <p className="font-bold text-2xl">RoadDetection</p>

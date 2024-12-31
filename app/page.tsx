@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 
 export default function HomePage() {
   return (
-    <main className="relative">
+    <main className="relative mx-auto grid ">
       <NavbarSection />
       <UploadSection />
       <ImageSection />

@@ -14,6 +14,7 @@ import { useUploadDialog } from "@/stores/upload-dialog-store";
 // import { useUploadButton } from "@/stores/upload-button-store";
 import { useImage } from "@/stores/image-store";
 import { useLoadingApi } from "@/stores/loading-api-store";
+import { useImageUrl } from "@/stores/image-url-store";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
@@ -48,6 +49,7 @@ export default function FormDialog() {
   });
   const [file, setFile] = useState<File | null>(null);
   const { setLoading } = useLoadingApi();
+  const { setUrl } = useImageUrl();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
@@ -55,8 +57,10 @@ export default function FormDialog() {
       if (file) {
         const reader = new FileReader();
         reader.onloadend = () => {
-          localStorage.setItem("imageFile", reader.result as string);
+          const imageDataUrl = reader.result as string;
+          localStorage.setItem("imageFile", imageDataUrl);
           setImage(true);
+          setUrl(imageDataUrl);
         };
         // setImage(reader.result as string);
         reader.readAsDataURL(file);
@@ -70,6 +74,7 @@ export default function FormDialog() {
         formData.append("image", data.image[0]);
       }
 
+      setUploadDialogModal(false);
       const res = await addDataPicture(formData);
 
       console.log(res);
@@ -139,7 +144,6 @@ export default function FormDialog() {
             variant={"outline"}
             type="submit"
             onClick={() => {
-              setUploadDialogModal(false);
               // setUploadButton(false);
             }}
           >

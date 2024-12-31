@@ -3,24 +3,27 @@ import LoadingImage from "@/components/core/LoadingImage";
 import { useLoadingApi } from "@/stores/loading-api-store";
 // import { useToast } from "@/hooks/use-toast";
 // import { Button } from "@/components/ui/button";
-import { useImage } from "@/stores/image-store";
+// import { useImage } from "@/stores/image-store";
 import Image from "next/image";
 // import { useUploadButton } from "@/stores/upload-button-store";
 // import { useImage } from "@/stores/image-store";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useImageUrl } from "@/stores/image-url-store";
+// import { set } from "react-hook-form";
 export default function ImageSection() {
-  const { image, setImage } = useImage();
+  // const { image, setImage } = useImage();
   // const { toast } = useToast();
   // const setOpenUploadButton = useUploadButton((s) => s.setOpen);
-  const [imageURL, setImageURL] = useState<string | null>(null);
+  // const [imageURL, setImageURL] = useState<string | null>(null);
   const { loading, setLoading } = useLoadingApi();
+  const { url, setUrl } = useImageUrl();
 
   useEffect(() => {
     const imageURL = localStorage.getItem("imageFile");
-    setImage(true);
+    // setImage(true);
     setLoading(false);
-    setImageURL(imageURL);
-  }, [setImage, setLoading]);
+    setUrl(imageURL as string);
+  }, [setLoading, setUrl]);
 
   useEffect(() => {
     const loadImages = async () => {
@@ -35,15 +38,15 @@ export default function ImageSection() {
   // console.log(decodedImageURL);
 
   return (
-    <section className="pt-10 grid mx-auto px-96 space-y-5">
-      {imageURL && loading && image && <LoadingImage imageURL={imageURL} />}
-      {imageURL && !loading && image && (
+    <section className="grid mx-auto w-96 pt-10">
+      {url && loading && <LoadingImage imageURL={url} />}
+      {url && !loading && (
         <>
           <Image
-            src={imageURL}
+            src={url}
             alt="road"
-            width={1000}
-            height={1000}
+            width={500}
+            height={500}
             className="rounded-xl"
           ></Image>
           {/* <div className="grid mx-auto gap-3 grid-cols-2">
