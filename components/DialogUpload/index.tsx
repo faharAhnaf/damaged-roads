@@ -6,7 +6,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useUploadDialog } from "@/stores/upload-dialog-store";
-import FormDialog from "../FormDialog";
+import FormDialog from "../DialogForm";
 import { Separator } from "../ui/separator";
 
 export default function UploadDialog() {

@@ -3,7 +3,7 @@
 import { useUploadDialog } from "@/stores/upload-dialog-store";
 import { Button } from "@/components/ui/button";
 import { Upload } from "lucide-react";
-import UploadDialog from "@/components/UploadDialog";
+import UploadDialog from "@/components/DialogUpload";
 // import { useUploadButton } from "@/stores/upload-button-store";
 // import { useEffect } from "react";
 // import { useImageUrl } from "@/stores/image-url-store";
