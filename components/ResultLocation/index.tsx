@@ -9,11 +9,11 @@ export default function LocationResult() {
   }
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center h-72">
       <iframe
-        className="rounded-xl"
-        width="500"
-        height="300"
+        className="rounded-xl w-full h-full"
+        // width="500"
+        // height="300"
         style={{ border: 0 }} // Use CSS to remove the border
         scrolling="no"
         src={`https://maps.google.com/maps?q=${data.lat},${data.long}&hl=id&z=14&output=embed`}

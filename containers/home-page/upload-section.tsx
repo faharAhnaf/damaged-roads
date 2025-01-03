@@ -20,9 +20,11 @@ export default function UploadSection() {
   // }, [setUrl]);
 
   return (
-    <section className=" grid place-items-center max-w-2xl mx-auto text-center space-y-5">
-      <p className="font-black text-7xl">Jalan Rusak? Cek Keparahannya!</p>
-      <p className="text-xl">
+    <section className="grid lg:place-items-center lg:max-w-2xl mx-auto text-center space-y-5">
+      <p className="font-black lg:text-7xl text-3xl">
+        Jalan Rusak? Cek Keparahannya!
+      </p>
+      <p className="lg:text-xl text-sm">
         Melihat tingkat kerusakan jalan dan menilai dampaknya, untuk kenyamanan
         dan keselamatan berkendara.
       </p>

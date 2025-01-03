@@ -36,7 +36,7 @@ export default function ImageSection() {
   // console.log(decodedImageURL);
 
   return (
-    <section className="grid mx-auto w-96 pt-10">
+    <section className="grid lg:mx-auto lg:w-96 mx-5 pt-10">
       {url && loading && <LoadingImage imageURL={url} />}
       {url && !loading && (
         <>
@@ -45,7 +45,7 @@ export default function ImageSection() {
             alt="road"
             width={500}
             height={500}
-            className="rounded-xl"
+            className="rounded-xl "
           ></Image>
           {/* <div className="grid mx-auto gap-3 grid-cols-2">
             <Button variant={"outline"}>Generate Gambar ✨</Button>

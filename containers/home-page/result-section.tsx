@@ -12,7 +12,7 @@ export default function ResultSection() {
   const { url } = useImageUrl();
   const { loading } = useLoadingApi();
   return (
-    <section className="pt-10 grid grid-cols-3 ">
+    <section className="pt-10 grid  lg:grid-cols-3">
       {url && !loading && (
         <>
           {[
@@ -20,7 +20,7 @@ export default function ResultSection() {
             { title: "bounding box", section: <BoundingBoxResult /> },
             { title: "lokasi", section: <LocationResult /> },
           ].map((item, index) => (
-            <span key={index} className="space-y-5 mx-5">
+            <span key={index} className="space-y-5 mx-5 my-5 lg:my-0">
               <div className="flex flex-col justify-center items-center ">
                 <HeaderOne key={index}>
                   {item.title.slice(0, 1).toUpperCase() + item.title.slice(1)}

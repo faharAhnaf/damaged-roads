@@ -31,7 +31,7 @@ export default function AccurationResult() {
                             key={key}
                             className="flex items-center justify-between"
                           >
-                            <p className="w-32 font-medium ">
+                            <p className="lg:w-32 font-medium ">
                               {key.replace(`Result-`, "Hasil ")}
                             </p>
                             <p className="font-bold text-blue-600 ">
@@ -68,7 +68,7 @@ export default function AccurationResult() {
                             key={key}
                             className="flex items-center justify-between"
                           >
-                            <p className="w-32 font-medium ">
+                            <p className="lg:w-32 font-medium ">
                               {key.replace(`Result-`, "Hasil ")}
                             </p>
                             <p className="font-bold text-blue-600 ">
