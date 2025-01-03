@@ -6,7 +6,7 @@ import ResultSection from "@/containers/home-page/result-section";
 
 export default function HomePage() {
   return (
-    <main className="relative mx-auto grid py-20">
+    <main className="relative mx-auto grid min-h-screen">
       <NavbarSection />
       <UploadSection />
       <ImageSection />
