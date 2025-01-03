@@ -16,14 +16,12 @@ export default function ImageSection() {
   // const setOpenUploadButton = useUploadButton((s) => s.setOpen);
   // const [imageURL, setImageURL] = useState<string | null>(null);
   const { loading, setLoading } = useLoadingApi();
-  const { url, setUrl } = useImageUrl();
+  const { url } = useImageUrl();
 
   useEffect(() => {
-    const imageURL = localStorage.getItem("imageFile");
     // setImage(true);
     setLoading(false);
-    setUrl(imageURL as string);
-  }, [setLoading, setUrl]);
+  }, [setLoading]);
 
   useEffect(() => {
     const loadImages = async () => {

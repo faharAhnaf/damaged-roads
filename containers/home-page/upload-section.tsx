@@ -20,7 +20,7 @@ export default function UploadSection() {
   // }, [setUrl]);
 
   return (
-    <section className="pt-20 grid place-items-center max-w-2xl mx-auto text-center space-y-5">
+    <section className=" grid place-items-center max-w-2xl mx-auto text-center space-y-5">
       <p className="font-black text-7xl">Jalan Rusak? Cek Keparahannya!</p>
       <p className="text-xl">
         Melihat tingkat kerusakan jalan dan menilai dampaknya, untuk kenyamanan

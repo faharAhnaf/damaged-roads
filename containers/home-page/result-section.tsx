@@ -2,11 +2,11 @@
 
 import HeaderOne from "@/components/core/HeaderOne";
 import AccurationResult from "@/components/ResultAccuration";
-import DescriptionResult from "@/components/ResultDescription";
 import LocationResult from "@/components/ResultLocation";
 import { Separator } from "@/components/ui/separator";
 import { useImageUrl } from "@/stores/image-url-store";
 import { useLoadingApi } from "@/stores/loading-api-store";
+import BoundingBoxResult from "@/components/ResultBoundingBox";
 
 export default function ResultSection() {
   const { url } = useImageUrl();
@@ -17,7 +17,7 @@ export default function ResultSection() {
         <>
           {[
             { title: "akurasi", section: <AccurationResult /> },
-            { title: "deskripsi", section: <DescriptionResult /> },
+            { title: "bounding box", section: <BoundingBoxResult /> },
             { title: "lokasi", section: <LocationResult /> },
           ].map((item, index) => (
             <span key={index} className="space-y-5 mx-5">

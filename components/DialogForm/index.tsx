@@ -15,13 +15,14 @@ import { useUploadDialog } from "@/stores/upload-dialog-store";
 import { useImage } from "@/stores/image-store";
 import { useLoadingApi } from "@/stores/loading-api-store";
 import { useImageUrl } from "@/stores/image-url-store";
+import { useData } from "@/stores/data-store";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
 
 const schema = z.object({
-  longitude: z.number().min(-180).max(180),
-  latitude: z.number().min(-90).max(90),
+  long: z.number().min(-180).max(180),
+  lat: z.number().min(-90).max(90),
   image: z
     .any()
     .refine(
@@ -50,6 +51,7 @@ export default function FormDialog() {
   const [file, setFile] = useState<File | null>(null);
   const { setLoading } = useLoadingApi();
   const { setUrl } = useImageUrl();
+  const { setData } = useData();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
@@ -58,7 +60,6 @@ export default function FormDialog() {
         const reader = new FileReader();
         reader.onloadend = () => {
           const imageDataUrl = reader.result as string;
-          localStorage.setItem("imageFile", imageDataUrl);
           setImage(true);
           setUrl(imageDataUrl);
         };
@@ -68,16 +69,19 @@ export default function FormDialog() {
 
       const formData = new FormData();
 
-      // formData.append("longitude", data.longitude.toString());
-      formData.append("description", data.latitude.toString());
+      formData.append("long", data.long.toString());
+      formData.append("lat", data.lat.toString());
       if (data.image[0]) {
         formData.append("image", data.image[0]);
       }
 
       setUploadDialogModal(false);
       const res = await addDataPicture(formData);
+      if (res) {
+        setData(res.data);
+      }
 
-      console.log(res);
+      console.log("Data: ", res);
     } catch (err) {
       console.log("Error: ", err);
     } finally {
@@ -90,36 +94,32 @@ export default function FormDialog() {
       <ul className="grid gap-4">
         <li>
           <div className="grid w-full max-w-sm items-center gap-3">
-            <Label htmlFor="longitude">Longitude</Label>
+            <Label htmlFor="long">Longitude</Label>
             <Input
               type="text"
-              id="longitude"
-              placeholder="Input Longitude..."
-              {...register("longitude", { valueAsNumber: true })}
+              id="long"
+              placeholder="Input longitude..."
+              {...register("long", { valueAsNumber: true })}
               onChange={(e) => {
                 e.target.value = e.target.value.replace(",", ".");
               }}
             />
-            {errors.longitude && (
-              <ErrorMessage message={errors.longitude.message} />
-            )}
+            {errors.long && <ErrorMessage message={errors.long.message} />}
           </div>
         </li>
         <li>
           <div className="grid w-full max-w-sm items-center gap-3">
-            <Label htmlFor="latitude">Latitude</Label>
+            <Label htmlFor="lat">Latitude</Label>
             <Input
               type="text"
-              id="latitude"
-              placeholder="Input Latitude..."
-              {...register("latitude", { valueAsNumber: true })}
+              id="lat"
+              placeholder="Input latitude..."
+              {...register("lat", { valueAsNumber: true })}
               onChange={(e) => {
                 e.target.value = e.target.value.replace(",", ".");
               }}
             />
-            {errors.latitude && (
-              <ErrorMessage message={errors.latitude.message} />
-            )}
+            {errors.lat && <ErrorMessage message={errors.lat.message} />}
           </div>
         </li>
         <li>
