@@ -22,9 +22,9 @@ export default function AccurationResult() {
                     <div key={i}>
                       {resultKeys.map((key, j) => {
                         const resultValues = predict[key][j];
-                        const lastConfidenceValue =
-                          resultValues[resultValues.length - 1];
-                        const percentage = lastConfidenceValue * 100;
+                        const maxValue = Math.max(...resultValues);
+
+                        const percentage = maxValue * 100;
                         const index = parseInt(key.split("-")[1], 10);
                         const label = data.prediction_labeling;
 
@@ -63,9 +63,14 @@ export default function AccurationResult() {
                     <div key={i}>
                       {resultKeys.map((key) => {
                         const resultObject = similar[key];
-                        const keyObject = Object.keys(resultObject);
-                        const percentage =
-                          resultObject["AlligatorCrack Tinggi"] * 100;
+                        const maxValue = Math.max(
+                          ...Object.values(resultObject)
+                        );
+                        const keyObject =
+                          Object.keys(resultObject)[
+                            Object.values(resultObject).indexOf(maxValue)
+                          ];
+                        const percentage = maxValue * 100;
 
                         return (
                           <div
@@ -73,8 +78,7 @@ export default function AccurationResult() {
                             className="flex items-center justify-between"
                           >
                             <p className="font-medium">
-                              {key.replace(`Result-`, `Hasil `)} -{" "}
-                              {keyObject[keyObject.length - 1]}
+                              {key.replace(`Result-`, `Hasil `)} - {keyObject}
                             </p>
                             <p className="font-bold text-blue-600">
                               {percentage.toFixed(2)}%
