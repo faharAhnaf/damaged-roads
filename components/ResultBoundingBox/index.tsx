@@ -30,7 +30,9 @@ export default function BoundingBoxResult() {
           ))}
         </div>
       ) : (
-        <HeaderTwo>Tidak Ada Hasil Bounding Box</HeaderTwo>
+        <div className="flex flex-col items-center justify-center">
+          <HeaderTwo>Tidak Ada Hasil Bounding Box</HeaderTwo>
+        </div>
       )}
     </>
   );

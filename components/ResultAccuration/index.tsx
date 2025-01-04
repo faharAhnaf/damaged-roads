@@ -34,8 +34,11 @@ export default function AccurationResult() {
                             className="flex items-center justify-between"
                           >
                             <p className=" font-medium">
-                              {key.replace(`Result-`, `Hasil `)} -{" "}
-                              {label[index]}
+                              {key.replace(
+                                `Result-${index}`,
+                                `Hasil ${index + 1}`
+                              )}{" "}
+                              - {label[index]}
                             </p>
                             <p className="font-bold text-blue-600">
                               {percentage.toFixed(2)}%
@@ -71,6 +74,7 @@ export default function AccurationResult() {
                             Object.values(resultObject).indexOf(maxValue)
                           ];
                         const percentage = maxValue * 100;
+                        const index = parseInt(key.split("-")[1], 10);
 
                         return (
                           <div
@@ -78,7 +82,11 @@ export default function AccurationResult() {
                             className="flex items-center justify-between"
                           >
                             <p className="font-medium">
-                              {key.replace(`Result-`, `Hasil `)} - {keyObject}
+                              {key.replace(
+                                `Result-${index}`,
+                                `Hasil ${index + 1}`
+                              )}{" "}
+                              - {keyObject}
                             </p>
                             <p className="font-bold text-blue-600">
                               {percentage.toFixed(2)}%
