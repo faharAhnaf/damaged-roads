@@ -79,6 +79,7 @@ export default function FormDialog() {
       const res = await addDataPicture(formData);
       if (res) {
         setData(res.data);
+        setUrl(res.data.original_image);
       }
 
       console.log("Data: ", res);

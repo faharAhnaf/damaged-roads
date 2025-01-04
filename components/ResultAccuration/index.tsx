@@ -11,7 +11,7 @@ export default function AccurationResult() {
         <div className="flex flex-col justify-between mx-auto space-y-4">
           <div className="w-full space-y-3">
             <div className="border rounded-xl shadow flex flex-col items-center">
-              <div className="border border-b-2 w-full flex items-center justify-center ">
+              <div className="border border-b-2 w-full flex items-center justify-center">
                 <HeaderTwo>Prediction Confidence</HeaderTwo>
               </div>
               <div className="space-y-2 w-full p-4">
@@ -20,21 +20,24 @@ export default function AccurationResult() {
 
                   return (
                     <div key={i}>
-                      {resultKeys.map((key, i) => {
-                        const resultValues = predict[key][i];
+                      {resultKeys.map((key, j) => {
+                        const resultValues = predict[key][j];
                         const lastConfidenceValue =
                           resultValues[resultValues.length - 1];
                         const percentage = lastConfidenceValue * 100;
+                        const index = parseInt(key.split("-")[1], 10);
+                        const label = data.prediction_labeling;
 
                         return (
                           <div
                             key={key}
                             className="flex items-center justify-between"
                           >
-                            <p className="lg:w-32 font-medium ">
-                              {key.replace(`Result-`, "Hasil ")}
+                            <p className=" font-medium">
+                              {key.replace(`Result-`, `Hasil `)} -{" "}
+                              {label[index]}
                             </p>
-                            <p className="font-bold text-blue-600 ">
+                            <p className="font-bold text-blue-600">
                               {percentage.toFixed(2)}%
                             </p>
                           </div>
@@ -49,7 +52,7 @@ export default function AccurationResult() {
 
           <div className="w-full space-y-3">
             <div className="border rounded-xl shadow flex flex-col items-center">
-              <div className="border border-b-2 w-full flex items-center justify-center ">
+              <div className="border border-b-2 w-full flex items-center justify-center">
                 <HeaderTwo>Similarity Score</HeaderTwo>
               </div>
               <div className="space-y-2 w-full p-4">
@@ -60,6 +63,7 @@ export default function AccurationResult() {
                     <div key={i}>
                       {resultKeys.map((key) => {
                         const resultObject = similar[key];
+                        const keyObject = Object.keys(resultObject);
                         const percentage =
                           resultObject["AlligatorCrack Tinggi"] * 100;
 
@@ -68,10 +72,11 @@ export default function AccurationResult() {
                             key={key}
                             className="flex items-center justify-between"
                           >
-                            <p className="lg:w-32 font-medium ">
-                              {key.replace(`Result-`, "Hasil ")}
+                            <p className="font-medium">
+                              {key.replace(`Result-`, `Hasil `)} -{" "}
+                              {keyObject[keyObject.length - 1]}
                             </p>
-                            <p className="font-bold text-blue-600 ">
+                            <p className="font-bold text-blue-600">
                               {percentage.toFixed(2)}%
                             </p>
                           </div>

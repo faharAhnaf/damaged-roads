@@ -31,12 +31,8 @@ export default function ImageSection() {
     loadImages();
   }, []);
 
-  // const splitImageURL = image?.split(",")[1];
-  // const decodedImageURL = atob(splitImageURL as string);
-  // console.log(decodedImageURL);
-
   return (
-    <section className="grid lg:mx-auto lg:w-96 mx-5 pt-10">
+    <section className="grid mx-auto lg:w-96 px-5 pt-10">
       {url && loading && <LoadingImage imageURL={url} />}
       {url && !loading && (
         <>
@@ -47,22 +43,6 @@ export default function ImageSection() {
             height={500}
             className="rounded-xl "
           ></Image>
-          {/* <div className="grid mx-auto gap-3 grid-cols-2">
-            <Button variant={"outline"}>Generate Gambar ✨</Button>
-            <Button
-              variant={"outline"}
-              onClick={() => {
-                localStorage.removeItem("imageFile");
-                toast({
-                  title: "Gambar Berhasil Dihapus",
-                });
-                setOpenUploadButton(true);
-                setImage(false);
-              }}
-            >
-              Batalkan
-            </Button>
-          </div> */}
         </>
       )}
     </section>
