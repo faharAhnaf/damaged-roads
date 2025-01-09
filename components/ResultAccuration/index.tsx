@@ -34,11 +34,8 @@ export default function AccurationResult() {
                             className="flex items-center justify-between"
                           >
                             <p className=" font-medium">
-                              {key.replace(
-                                `Result-${index}`,
-                                `Hasil ${index + 1}`
-                              )}{" "}
-                              - {label[index]}
+                              {key.replace(`-${index}`, ` ${index + 1}`)} -{" "}
+                              {label[index]}
                             </p>
                             <p className="font-bold text-blue-600">
                               {percentage.toFixed(2)}%
@@ -82,11 +79,8 @@ export default function AccurationResult() {
                             className="flex items-center justify-between"
                           >
                             <p className="font-medium">
-                              {key.replace(
-                                `Result-${index}`,
-                                `Hasil ${index + 1}`
-                              )}{" "}
-                              - {keyObject}
+                              {key.replace(`-${index}`, ` ${index + 1}`)} -{" "}
+                              {keyObject}
                             </p>
                             <p className="font-bold text-blue-600">
                               {percentage.toFixed(2)}%
@@ -103,7 +97,7 @@ export default function AccurationResult() {
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center">
-          <HeaderTwo>Tidak Ada Hasil Akurasi</HeaderTwo>
+          <HeaderTwo>No Accuracy Results</HeaderTwo>
         </div>
       )}
     </>

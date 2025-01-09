@@ -17,7 +17,7 @@ export default function UploadDialog() {
       <DialogContent className="gap-0 overflow-hidden p-0 md:rounded-2xl">
         <DialogHeader className="items-center justify-center space-y-3 px-16 py-8">
           <DialogTitle className="font-display text-2xl font-bold leading-normal tracking-normal">
-            Upload Gambar
+            Upload Image
           </DialogTitle>
           <Separator />
           <FormDialog />

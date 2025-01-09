@@ -17,9 +17,9 @@ export default function ResultSection() {
         <>
           <section className="pt-10 grid lg:grid-cols-3 mb-20">
             {[
-              { title: "akurasi", section: <AccurationResult /> },
+              { title: "accuracy", section: <AccurationResult /> },
               { title: "bounding box", section: <BoundingBoxResult /> },
-              { title: "lokasi", section: <LocationResult /> },
+              { title: "location", section: <LocationResult /> },
             ].map((item, index) => (
               <span key={index} className="space-y-5 mx-5 my-5 lg:my-0">
                 <div className="flex flex-col justify-center items-center ">
