@@ -125,7 +125,7 @@ export default function FormDialog() {
         </li>
         <li>
           <div className="grid w-full max-w-sm items-center gap-3">
-            <Label htmlFor="image">Gambar</Label>
+            <Label htmlFor="image">Image</Label>
             <Input
               id="image"
               type="file"
