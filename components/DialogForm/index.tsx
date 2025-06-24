@@ -49,6 +49,7 @@ export default function FormDialog() {
     resolver: zodResolver(schema),
   });
   const [file, setFile] = useState<File | null>(null);
+
   const { setLoading } = useLoadingApi();
   const { setUrl } = useImageUrl();
   const { setData } = useData();

@@ -9,38 +9,37 @@ import UploadDialog from "@/components/DialogUpload";
 // import { useImageUrl } from "@/stores/image-url-store";
 
 export default function UploadSection() {
-  // const { open } = useUploadButton();
-  const setUploadDialogModal = useUploadDialog((s) => s.setOpen);
-  // const [imageURL, setImageURL] = useState<string | null>(null);
-  // const { url, setUrl } = useImageUrl();
+	// const { open } = useUploadButton();
+	const setUploadDialogModal = useUploadDialog((s) => s.setOpen);
+	// const [imageURL, setImageURL] = useState<string | null>(null);
+	// const { url, setUrl } = useImageUrl();
 
-  // useEffect(() => {
-  //   const imageURL = localStorage.getItem("imageFile");
-  //   setUrl(imageURL as string);
-  // }, [setUrl]);
+	// useEffect(() => {
+	//   const imageURL = localStorage.getItem("imageFile");
+	//   setUrl(imageURL as string);
+	// }, [setUrl]);
 
-  return (
-    <section className="pt-20 grid lg:place-items-center lg:max-w-3xl mx-auto text-center space-y-5">
-      <p className="font-black lg:text-7xl text-3xl">
-        Damaged Road? Check the Severity!
-      </p>
-      <p className="lg:text-xl text-sm mx-10">
-        View the level of road damage and assess its impact, for driving comfort
-        and safety.
-      </p>
+	return (
+		<section className="pt-20 grid lg:place-items-center lg:max-w-4xl mx-auto text-center space-y-5">
+			<p className="font-black lg:text-7xl text-3xl">
+				Jalan Rusak? Periksa Tingkat Keparahannya!
+			</p>
+			<p className="lg:text-xl text-sm mx-10">
+				Melihat tingkat kerusakan jalan dan menilai dampaknya, demi kenyamanan
+				dan keselamatan berkendara.
+			</p>
 
-      {/* {open && ( */}
-      <Button
-        onClick={() => setUploadDialogModal(true)}
-        variant={"outline"}
-        className="mx-auto flex lg:w-44 grid-cols-2"
-      >
-        <Upload />
-        Upload Image ✨
-      </Button>
-      {/* )} */}
+			{/* {open && ( */}
+			<Button
+				onClick={() => setUploadDialogModal(true)}
+				variant={"outline"}
+				className="mx-auto flex lg:w-44 grid-cols-2">
+				<Upload />
+				Upload Image ✨
+			</Button>
+			{/* )} */}
 
-      <UploadDialog />
-    </section>
-  );
+			<UploadDialog />
+		</section>
+	);
 }
