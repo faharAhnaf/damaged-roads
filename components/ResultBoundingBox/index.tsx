@@ -33,7 +33,7 @@ export default function BoundingBoxResult() {
 				</div>
 			) : (
 				<div className="flex flex-col items-center justify-center">
-					<HeaderTwo>Tidak Ada Kerusakan Jalan</HeaderTwo>
+					<HeaderTwo>Tidak Terdapat Kerusakan Jalan</HeaderTwo>
 				</div>
 			)}
 		</>

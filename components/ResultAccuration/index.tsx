@@ -106,7 +106,7 @@ export default function AccurationResult() {
 				</div>
 			) : (
 				<div className="flex flex-col items-center justify-center">
-					<HeaderTwo>No Accuracy Results</HeaderTwo>
+					<HeaderTwo>Tidak Terdapat Kerusakan Jalan</HeaderTwo>
 				</div>
 			)}
 		</>
