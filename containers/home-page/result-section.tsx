@@ -29,9 +29,9 @@ export default function ResultSection() {
 										className="rounded-xl "></Image>
 								),
 							},
-							{ title: "Akurasi", section: <AccurationResult /> },
+							{ title: "", section: <AccurationResult /> },
 							{
-								title: "Reteksi Kerusakan Jalan",
+								title: "Deteksi Kerusakan Jalan",
 								section: <BoundingBoxResult />,
 							},
 							{
@@ -39,12 +39,15 @@ export default function ResultSection() {
 								section: <LocationResult />,
 							},
 						].map((item, index) => (
-							<span key={index} className="space-y-5 mx-5 my-5 lg:my-0 pb-5">
-								<div className="flex flex-col justify-center items-center ">
+							<span key={index} className=" mx-5 lg:my-0 pb-5">
+								<div
+									className={`flex flex-col justify-center items-center ${
+										item.title && "mb-5"
+									}`}>
 									<HeaderOne key={index}>
 										{item.title.slice(0, 1).toUpperCase() + item.title.slice(1)}
 									</HeaderOne>
-									<Separator />
+									{item.title && <Separator />}
 								</div>
 								<div className="mx-auto grid place-items-center">
 									{item.section}

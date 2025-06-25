@@ -20,11 +20,11 @@ export default function AccurationResult() {
 
 									return (
 										<div key={i}>
-											{resultKeys.map((key, j) => {
-												const resultValues = predict[key][j];
-												const maxValue = Math.max(...resultValues);
+											{resultKeys.map((key) => {
+												// const resultValues = predict[key][j];
+												// const maxValue = Math.max(...resultValues);
 
-												const percentage = maxValue * 100;
+												// const percentage = maxValue * 100;
 												const index = parseInt(key.split("-")[1], 10);
 												const label = data.prediction_labeling;
 
@@ -42,9 +42,9 @@ export default function AccurationResult() {
 														<p className=" font-medium">
 															{formattedKey}: {label[index]}
 														</p>
-														<p className="font-bold text-blue-600">
+														{/* <p className="font-bold text-blue-600">
 															{percentage.toFixed(2)}%
-														</p>
+														</p> */}
 													</div>
 												);
 											})}
@@ -75,7 +75,7 @@ export default function AccurationResult() {
 													Object.keys(resultObject)[
 														Object.values(resultObject).indexOf(maxValue)
 													];
-												const percentage = maxValue * 100;
+												// const percentage = maxValue * 100;
 
 												const formattedKey = key.replace(
 													/^.*-(\d+)$/,
@@ -91,9 +91,9 @@ export default function AccurationResult() {
 														<p className="font-medium">
 															{formattedKey}: {keyObject}
 														</p>
-														<p className="font-bold text-blue-600">
+														{/* <p className="font-bold text-blue-600">
 															{percentage.toFixed(2)}%
-														</p>
+														</p> */}
 													</div>
 												);
 											})}

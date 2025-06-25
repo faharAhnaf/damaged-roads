@@ -20,14 +20,14 @@ export default function UploadSection() {
 	// }, [setUrl]);
 
 	return (
-		<section className="pt-20 grid lg:place-items-center lg:max-w-4xl mx-auto text-center space-y-5">
-			<p className="font-black lg:text-7xl text-3xl">
-				Jalan Rusak? Periksa Tingkat Keparahannya!
+		<section className="pt-20 grid lg:place-items-center lg:max-w-4xl mx-auto text-center ">
+			<p className="font-black lg:text-5xl text-3xl">
+				Identifikasi Jenis, Tingkat, dan Titik Lokasi Kerusakan Jalan
 			</p>
-			<p className="lg:text-xl text-sm mx-10">
+			{/* <p className="lg:text-xl text-sm mx-10">
 				Melihat tingkat kerusakan jalan dan menilai dampaknya, demi kenyamanan
 				dan keselamatan berkendara.
-			</p>
+			</p> */}
 
 			{/* {open && ( */}
 			<Button
